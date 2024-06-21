@@ -1,8 +1,7 @@
-// src/App.js
-import React, { useState } from 'react';
-import PopupForm from './components/PopupForm';
-import './App.css';
 
+import React, { useState } from 'react';
+import PopupForm from './components/PopupForm'
+import './App.css';
 
 const App = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);

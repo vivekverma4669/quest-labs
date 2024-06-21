@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PopupForm.css';
-import { ENTITY_AUTHENTICATION_TOKEN } from '../api';
-import { API_KEY } from '../api';
-import { ENTITY_ID } from '../api';
-import { CAMPAIGN_ID } from '../api';
-const PopupForm = ({ isOpen, onClose }) => {
+import { API_KEY, ENTITY_AUTHENTICATION_TOKEN, ENTITY_ID, CAMPAIGN_ID } from '../api';
 
+const PopupForm = ({ isOpen, onClose }) => {
+  const [userId, setUserId] = useState(null);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,21 +13,38 @@ const PopupForm = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      axios.get('https://staging.questprotocol.xyz/api/campaign/details', {
+      setLoading(true);
+      // Step 1: Generate User ID and Token
+      axios.post('https://staging.questprotocol.xyz/api/loginwithexternaluserid', {
+        externalUserId: "someUniqueExternalId" // Generate a unique external ID as needed
+      }, {
         headers: {
-          'Authorization': `Bearer ${ENTITY_AUTHENTICATION_TOKEN}`,
           'x-api-key': API_KEY
-        },
-        params: {
-          entityId: ENTITY_ID,
-          campaignId: CAMPAIGN_ID
         }
+      })
+      .then(response => {
+        const { userId, token } = response.data;
+        setUserId(userId);
+        
+        // Step 2: Fetch Form Data
+        return axios.get('https://staging.questprotocol.xyz/api/getcampaigndetails', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'x-api-key': API_KEY
+          },
+          params: {
+            entityId: ENTITY_ID,
+            campaignId: CAMPAIGN_ID,
+            userId
+          }
+        });
       })
       .then(response => {
         setFormData(response.data);
         setLoading(false);
       })
       .catch(err => {
+        console.error(err);
         setError('Failed to fetch form data.');
         setLoading(false);
       });
@@ -42,18 +57,27 @@ const PopupForm = ({ isOpen, onClose }) => {
   };
 
   const validateForm = () => {
-  // Example of basic validation
-  for (const field of formData.fields) {
-    if (field.required && !formValues[field.name]) {
-      return false;
+    for (const field of formData.fields) {
+      if (field.required && !formValues[field.name]) {
+        return false;
+      }
     }
-  }
-  return true;
-};
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://staging.questprotocol.xyz/api/campaign/verify', formValues, {
+    if (!validateForm()) {
+      setSubmitError('Please fill out all required fields.');
+      return;
+    }
+    setSubmitError(null);
+    
+    // Step 3: Submit Form Data
+    axios.post('https://staging.questprotocol.xyz/api/verifycampaignaction', {
+      ...formValues,
+      userId
+    }, {
       headers: {
         'Authorization': `Bearer ${ENTITY_AUTHENTICATION_TOKEN}`,
         'x-api-key': API_KEY
@@ -63,6 +87,7 @@ const PopupForm = ({ isOpen, onClose }) => {
       onClose();
     })
     .catch(err => {
+      console.error(err);
       setSubmitError('Failed to submit form.');
     });
   };
@@ -71,14 +96,13 @@ const PopupForm = ({ isOpen, onClose }) => {
 
   return (
     <div className="popup-form-overlay">
-      <div className="popup-form">
+      <div className="popup-form" style={{backgroundColor :"purple"}}>
         <button className="close-btn" onClick={onClose}>✖️</button>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
         ) : (
-          
           <form onSubmit={handleSubmit}>
             {formData.fields.map(field => (
               <div key={field.id}>
