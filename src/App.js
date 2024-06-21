@@ -1,22 +1,28 @@
+// src/App.js
 import React, { useState } from 'react';
 import PopupForm from './components/PopupForm';
 import './App.css';
 
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
+const App = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsFormOpen(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={togglePopup}>Open Form</button>
+        <button onClick={handleButtonClick}>Open Form</button>
+        <PopupForm isOpen={isFormOpen} onClose={handleCloseForm} />
       </header>
-      {isOpen && <PopupForm closePopup={togglePopup} />}
     </div>
   );
-}
+};
 
 export default App;
