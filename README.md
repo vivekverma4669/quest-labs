@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest Engineer 1 Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>Quest Engineer 1 Assignment</h1>
 
-## Available Scripts
+<h2>Objective</h2>
+<p>This project implements a popup form that slides in from the right side of the screen when a button is clicked. The form uses provided APIs to fetch and submit data.</p>
 
-In the project directory, you can run:
+<h2>Features</h2>
+<ul>
+    <li>A button on the landing page triggers the form popup.</li>
+    <li>The form slides in smoothly from the right side of the screen.</li>
+    <li>Form data is fetched from an API and displayed in the form.</li>
+    <li>The form includes basic validation before submission.</li>
+    <li>Error handling and user feedback mechanisms are included.</li>
+</ul>
 
-### `npm start`
+<h2>Technologies Used</h2>
+<ul>
+    <li>React</li>
+    <li>Axios</li>
+    <li>CSS for styling and animations</li>
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>Project Structure</h2>
+<pre><code>/src
+  /components
+    PopupForm.js
+    PopupForm.css
+  App.js
+  index.js
+  api.js
+/public
+  index.html
+/README.md
+</code></pre>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h2>Getting Started</h2>
 
-### `npm test`
+<h3>Prerequisites</h3>
+<ul>
+    <li>Node.js</li>
+    <li>npm (or yarn)</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Installation</h3>
+<ol>
+    <li>Clone the repository:
+        <pre><code>git clone &lt;repository-url&gt;
+cd &lt;repository-directory&gt;</code></pre>
+    </li>
+    <li>Install dependencies:
+        <pre><code>npm install</code></pre>
+    </li>
+</ol>
 
-### `npm run build`
+<h3>Running the App</h3>
+<ol>
+    <li>Start the development server:
+        <pre><code>npm start</code></pre>
+    </li>
+    <li>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser to view the app.</li>
+</ol>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h2>API Details</h2>
+<ul>
+    <li><strong>Generate User ID and Token:</strong> <code>POST https://staging.questprotocol.xyz/api/loginwithexternaluserid</code></li>
+    <li><strong>Get Form Data:</strong> <code>GET https://staging.questprotocol.xyz/api/getcampaigndetails</code></li>
+    <li><strong>Submit Form:</strong> <code>POST https://staging.questprotocol.xyz/api/verifycampaignaction</code></li>
+</ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h2>Environment Variables</h2>
+<p>Set the following environment variables in your <code>.env</code> file:</p>
+<pre><code>REACT_APP_API_KEY=k-8f7aa4ea-a0c7-42ac-a821-a342d21887fe
+REACT_APP_ENTITY_AUTHENTICATION_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6ImUtYjY2YmNhMjQtZjZjZS00NDg5LWIyZTktZTI0YTkwZTA0ODc3IiwiaWF0IjoxNzE4ODcyODg0fQ.O0DEB_S-dirK4MMa2nm0yqwDhdCtdvTySPGpmCGAqqU
+REACT_APP_ENTITY_ID=e-b66bca24-f6ce-4489-b2e9-e24a90e04877
+REACT_APP_CAMPAIGN_ID=c-14d4f959-5999-4308-af48-37549b89eec7
+</code></pre>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h2>How it Works</h2>
+<h3>App Component</h3>
+<ul>
+    <li>Contains a button that triggers the popup form.</li>
+    <li>Manages the state for whether the form is open or closed.</li>
+</ul>
 
-### `npm run eject`
+<h3>PopupForm Component</h3>
+<ul>
+    <li>Generates a user ID when the form is opened.</li>
+    <li>Fetches form data from the API using the generated user ID.</li>
+    <li>Displays the form fields dynamically based on the fetched data.</li>
+    <li>Validates the form fields before submission.</li>
+    <li>Submits the form data to the API.</li>
+    <li>Handles and displays errors during data fetching and form submission.</li>
+</ul>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<h3>Styling and Animation</h3>
+<ul>
+    <li>The form slides in from the right using CSS animations.</li>
+    <li>The form is styled to be user-friendly and responsive.</li>
+</ul>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h2>Error Handling</h2>
+<ul>
+    <li>Proper error messages are displayed if the form data fails to load or if the form submission fails.</li>
+    <li>Form validation ensures required fields are filled out before submission.</li>
+</ul>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<h2>Deployment</h2>
+<ol>
+    <li>Build the app for production:
+        <pre><code>npm run build</code></pre>
+    </li>
+    <li>Deploy the contents of the <code>build</code> directory to your preferred hosting service.</li>
+</ol>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<h2>Submission</h2>
+<ol>
+    <li>Submit the source code via a GitHub repository link.</li>
+    <li>Ensure the code is well-documented and organized.</li>
+    <li>Deploy the app and share a link to it.</li>
+    <li>Include setup instructions and a video walkthrough of the app's functionality.</li>
+    <li>Email the submission to <a href="mailto:shubham@questapp.xyz">shubham@questapp.xyz</a> with the subject <code>&lt;Your name&gt; Quest Shopify Profile - Round 1 submission</code>.</li>
+</ol>
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</body>
+</html>
