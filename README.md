@@ -52,8 +52,8 @@
 <h2>Project Structure</h2>
 <pre><code>/src
   /components
-    PopupForm.js
-    PopupForm.css
+    Buttons
+    Inputs
   App.js
   index.js
   api.js
@@ -147,7 +147,6 @@ REACT_APP_CAMPAIGN_ID=c-14d4f959-5999-4308-af48-37549b89eec7
     <li>Ensure the code is well-documented and organized.</li>
     <li>Deploy the app and share a link to it.</li>
     <li>Include setup instructions and a video walkthrough of the app's functionality.</li>
-    <li>Email the submission to <a href="mailto:shubham@questapp.xyz">shubham@questapp.xyz</a> with the subject <code>&lt;Your name&gt; Quest Shopify Profile - Round 1 submission</code>.</li>
 </ol>
 
 </body>
