@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Pic from "../image/hp-player-crop.webp"
 import Elf from "../image/2222.png"
 import Int from "../image/3.png"
@@ -13,6 +15,7 @@ import Ch from "../image/10.png"
 import PopupForm from './PopupForm'
 
 
+
 function Home() {
     const [isFormVisible, setFormVisible] = useState(false);
 
@@ -23,7 +26,8 @@ function Home() {
       const closeForm = () => {
         setFormVisible(false);
       };
-
+     
+     
   return (
     <DIV>
       <header>
@@ -38,7 +42,9 @@ function Home() {
                 <p>Partners</p>
                 <p>Resources</p>
                 <p>Company</p>
+
             </nav>
+            <ToastContainer style={{margin :'auto'}} />
         </div>
         <div className='right'>
             <select name="" id="">
@@ -63,7 +69,6 @@ function Home() {
         </div>
       </div>
       
-      {/* main end */}
 
       <div className='banner'>
         <h3>MADE TO SCALE WITH COMPANIES OF ALL SIZES</h3>
@@ -103,7 +108,7 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;
 
 
 const DIV = styled.div`

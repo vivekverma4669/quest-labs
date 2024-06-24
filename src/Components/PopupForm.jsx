@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-
 const API_KEY = 'k-8f7aa4ea-a0c7-42ac-a821-a342d21887fe';
 const ENTITY_AUTHENTICATION_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1LTM1ZTFhY2M0LTlmNGYtNGY3OS1hZGMxLWUyZTg0ZjMyZDNlOSIsImlhdCI6MTcxOTA2MDU2NSwiZXhwIjoxNzE5NjY1MzY1fQ.UwO7D4znaSmVicVaRKHzK7erUg2QGzhsg4pmjMnk6lc';
 const USER_ID = 'u-35e1acc4-9f4f-4f79-adc1-e2e84f32d3e9';
@@ -10,7 +10,6 @@ const CAMPAIGN_ID = 'c-14d4f959-5999-4308-af48-37549b89eec7';
 const CAMPAIGN_VARIATION_ID = "cv-d9d30363-2ce8-4793-a7b3-ab34eccdbd71";
 const ACTION_ID = "ca-336fef44-9d0f-42dc-8493-15a91ea36013";
 
-
 const PopupForm = ({ closeForm }) => {
   const [formData, setFormData] = useState({});
   const [formFields, setFormFields] = useState([]);
@@ -18,7 +17,7 @@ const PopupForm = ({ closeForm }) => {
   const [isOpen, setIsOpen] = useState(false);
   const formRef = useRef(null); 
 
-  useEffect(() => {
+useEffect(() => {
     const fetchFormData = async () => {
       try {
         const response = await axios.get(`https://staging.questprotocol.xyz/api/v2/entities/${ENTITY_ID}/campaigns/${CAMPAIGN_ID}`, {
@@ -79,7 +78,9 @@ const PopupForm = ({ closeForm }) => {
             'userid': USER_ID
           },
         });
-        alert('Form submitted successfully!');
+     
+        const notify = () => toast("Form submited succesfully ! 🎉");
+        notify();
         closeForm();
       } catch (error) {
         console.error('Error submitting form:', error.message, error.response.data);
@@ -163,8 +164,9 @@ const PopupForm = ({ closeForm }) => {
   };
 
   return (
+
     <FormContainer ref={formRef} isOpen={isOpen}>
-      <CloseButton onClick={closeForm}>×</CloseButton>
+      <CloseButton onClick={closeForm}> × </CloseButton>
       <FormHeader>
         <h3>Connect with Sales</h3>
         <StageContainer>
@@ -190,6 +192,7 @@ const PopupForm = ({ closeForm }) => {
             <button type="submit">{stage === 1 ? <>Next &rarr;</> : 'Submit'}</button>
           </ButtonContainer>
         </form>
+
       </FORM>
     </FormContainer>
   );
