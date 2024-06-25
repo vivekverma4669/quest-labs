@@ -168,8 +168,12 @@ useEffect(() => {
     <FormContainer ref={formRef} isOpen={isOpen}>
       <CloseButton onClick={closeForm}> × </CloseButton>
       <FormHeader>
-        <h3>Connect with Sales</h3>
+
+      <h3>Connect with Sales</h3>
+        
+
         <StageContainer>
+
           <div>
             <Stage active={stage === 1}>1</Stage>
             <p>YOUR DETAILS</p>
@@ -234,6 +238,7 @@ const CloseButton = styled.button`
 
 const FormHeader = styled.div`
   margin-bottom: 20px;
+ 
 `
 
 const StageContainer = styled.div`

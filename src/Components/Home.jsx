@@ -33,7 +33,7 @@ function Home() {
       <header>
         <div className='left'>
             <nav>
-                <span>braze</span>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQBKue3owXLOUYDTmh8_Ceha4J0YH2Jq1aXA&s" height="50px"/>
                 <p>How it Works</p>
                 <p>Product</p>
                 <p>Solutions </p>
