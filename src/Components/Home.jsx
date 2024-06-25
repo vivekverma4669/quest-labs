@@ -99,7 +99,7 @@ function Home() {
             </div>
             
         </div>
-        <button className='connect' onClick={handleConnectWithSalesClick}>
+        <button className='connect' onClick={handleConnectWithSalesClick} style={{padding :"18px", marginRight :'35px' , marginTop : "-400px", }}>
             Connect With Sales
         </button>
       </div>
