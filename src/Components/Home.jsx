@@ -47,8 +47,11 @@ function Home() {
             <ToastContainer style={{margin :'auto'}} />
         </div>
         <div className='right'>
-            <select name="" id="">
-                <option value="us"> US</option>
+            <select name="" id=""  style={{backgroundColor : 'silver' , padding :"5px" , borderRadius :"7px" , marginRight :'20px'}}>
+           
+                <option value="us"> 🌎US</option>
+                <option value="in" > 🌎IN</option>
+                <option value="uae"> 🌎UAE</option>
             </select>
             <button id='login'>Login</button>
             <button id='get_start'>Get Started</button>
