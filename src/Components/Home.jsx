@@ -73,7 +73,7 @@ function Home() {
       </div>
       
 
-      <div className='banner'>
+      <div className='banner' style={{marginBottom :"0px" , paddingBottom :"0px"}}>
         <h3>MADE TO SCALE WITH COMPANIES OF ALL SIZES</h3>
         <div className='icon_con'>
             <div className='icons'>
